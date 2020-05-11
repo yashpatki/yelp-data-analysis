@@ -1,0 +1,285 @@
+package com.populate1;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JList;
+import javax.swing.JCheckBox;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import net.proteanit.sql.DbUtils;
+
+import javax.swing.JTable;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import javax.swing.JTextPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.*;
+import javax.swing.*
+;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;public class GUI {
+	public static Connection connection;
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI window = new GUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public GUI() {
+		initialize();
+		Connection connection = null;
+
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {		
+		frame = new JFrame();
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 259, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 281, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(667, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 701, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		
+		JPanel panel_sub_categories = new JPanel();
+		scrollPane_1.setViewportView(panel_sub_categories);
+		GridBagLayout gbl_panel_sub_categories = new GridBagLayout();
+		gbl_panel_sub_categories.columnWidths = new int[]{0};
+		gbl_panel_sub_categories.rowHeights = new int[]{0};
+		gbl_panel_sub_categories.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_panel_sub_categories.rowWeights = new double[]{Double.MIN_VALUE};
+		panel_sub_categories.setLayout(gbl_panel_sub_categories);
+		
+		JPanel panel_main_categories = new JPanel();
+		scrollPane.setViewportView(panel_main_categories);
+		
+		JCheckBox checkBox = new JCheckBox("Active Life");
+		
+		JCheckBox chckbxArtsAndEntertainment = new JCheckBox("Arts and Entertainment");
+		chckbxArtsAndEntertainment.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+			}
+		});
+		
+		JCheckBox chckbxAutomotive = new JCheckBox("Automotive");
+		
+		JCheckBox chckbxCarRental = new JCheckBox("Car Rental");
+		
+		JCheckBox chckbxCafes = new JCheckBox("Cafes");
+		
+		JCheckBox chckbxBeautySpas = new JCheckBox("Beauty & Spas");
+		
+		JCheckBox chckbxConvenienceStores = new JCheckBox("Convenience Stores");
+		
+		JCheckBox chckbxDentists = new JCheckBox("Dentists");
+		
+		JCheckBox chckbxDoctors = new JCheckBox("Doctors");
+		
+		JCheckBox chckbxDrugstores = new JCheckBox("Drugstores");
+		
+		JCheckBox chckbxDepartmentStores = new JCheckBox("Department Stores");
+		
+		JCheckBox chckbxEducation = new JCheckBox("Education");
+		
+		JCheckBox chckbxEventPlanningAnd = new JCheckBox("Event Planning & Services");
+		
+		JCheckBox chckbxFlowersGifts = new JCheckBox("Flowers & Gifts");
+		
+		JCheckBox chckbxFood = new JCheckBox("Food");
+		
+		JCheckBox chckbxHealthAndMedical = new JCheckBox("Health and Medical");
+		
+		JCheckBox chckbxHomeServices = new JCheckBox("Home Services");
+		
+		JCheckBox chckbxHomeAndGarden = new JCheckBox("Home and Garden");
+		
+		JCheckBox chckbxHospitals = new JCheckBox("Hospitals");
+		
+		JCheckBox chckbxHotelsTravel = new JCheckBox("Hotels & Travel");
+		
+		JCheckBox chckbxHardwareStores = new JCheckBox("Hardware Stores");
+		
+		JCheckBox chckbxGrocery = new JCheckBox("Grocery");
+		
+		JCheckBox chckbxMedicalCentres = new JCheckBox("Medical Centers");
+		
+		JCheckBox chckbxNurseries = new JCheckBox("Nurseries & Gardening");
+		
+		JCheckBox chckbxNightlife = new JCheckBox("Nightlife");
+		
+		JCheckBox chckbxRestaurants = new JCheckBox("Restaurants");
+		
+		JCheckBox chckbxShopping = new JCheckBox("Shopping");
+		
+		JCheckBox chckbxTransportation = new JCheckBox("Transportation");
+		
+		
+		
+		
+		GroupLayout gl_panel_main_categories = new GroupLayout(panel_main_categories);
+		gl_panel_main_categories.setHorizontalGroup(
+			gl_panel_main_categories.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_main_categories.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panel_main_categories.createParallelGroup(Alignment.LEADING)
+						.addComponent(checkBox)
+						.addComponent(chckbxArtsAndEntertainment, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_panel_main_categories.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(chckbxCarRental, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+							.addComponent(chckbxAutomotive, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+						.addComponent(chckbxCafes, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxBeautySpas, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxConvenienceStores, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxDentists, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxDoctors, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxDrugstores, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxDepartmentStores, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxEducation, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxEventPlanningAnd, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxFlowersGifts, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxFood, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxHealthAndMedical, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxHomeServices, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxHomeAndGarden, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxHospitals, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxHotelsTravel, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxHardwareStores, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxGrocery, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxMedicalCentres, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxNurseries, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxNightlife, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxRestaurants, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxShopping, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
+						.addComponent(chckbxTransportation, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(76, Short.MAX_VALUE))
+		);
+		gl_panel_main_categories.setVerticalGroup(
+			gl_panel_main_categories.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel_main_categories.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(checkBox)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxArtsAndEntertainment)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxAutomotive)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxCarRental)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxCafes)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxBeautySpas)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxConvenienceStores)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxDentists)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxDoctors)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxDrugstores)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxDepartmentStores)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxEducation)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxEventPlanningAnd)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxFlowersGifts)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxFood)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxHealthAndMedical)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxHomeServices)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxHomeAndGarden)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxHospitals)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxHotelsTravel)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxHardwareStores)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxGrocery)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxMedicalCentres)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxNurseries)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxNightlife)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxRestaurants)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxShopping)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(chckbxTransportation))
+		);
+		panel_main_categories.setLayout(gl_panel_main_categoriesaurants)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(chckbxShopping)
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(chckbxTransportation))
+		);
+		panel.setLayout(gl_panelchckbxr.println("Unable to load driver.");
+			e.printStackTrace();
+		}
+		try {
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "yash", "yash");
+			System.out.print("connected");
+		} catch (Exception e) {
+			System.err.println("Unable to connect");
+			e.printStackTrace();
+		}
+	}
+
+	public static void closeConnection() {
+		try {
+			connection.close();
+		} catch (Exception e) {
+			System.err.println("Unable to close db");
+			e.printStackTrace();
+		}
+	}
+}
